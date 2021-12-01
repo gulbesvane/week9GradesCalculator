@@ -1,11 +1,12 @@
 
 var noOfSubjects;
-var results;
+var results=[];
 var yourGrade;
 
 function calculateGrades(){
 for(i=0; i<noOfSubjects; i++){
 	result= parseFloat(prompt(`Enter your result of the subject ${i+1}`));
+	results[i] = result;
 	if(result >= 70.00 && result <=100.00){
 		yourGrade = "A";
 	}
@@ -30,8 +31,21 @@ for(i=0; i<noOfSubjects; i++){
 	else{
 		yourGrade ="Invalid input";
 		}
-	document.getElementById("main").innerHTML += (`<h5> Subject ${(i+1)} grade is: ${yourGrade} </h5>`);
+	//console.log(results[i]);
+	document.getElementById("main").innerHTML += (`<h5> Subject ${(i+1)} result ${results[i]} grade is: ${yourGrade} </h5>`);
 	}
+	calculateAverage();
+}
+
+function calculateAverage(){
+	var total=0;
+	var average=0;
+	for(i=0; i<results.length; i++){
+		total += results[i];
+	}
+	//console.log(total);
+	average = total/results.length;
+	document.getElementById("main").innerHTML += (`<h5> Your average result is: ${average} </h5>`);
 }
 
 function userInput(){
